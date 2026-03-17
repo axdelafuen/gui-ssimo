@@ -3,7 +3,8 @@ add_library( base )
 
 target_sources( base
   PRIVATE
-	gui/Distance.cpp gui/Position.cpp gui/Rond.cpp gui/Rectangle.cpp gui/Ligne.cpp gui/Fleche.cpp
+	gui/Distance.cpp gui/Position.cpp gui/ObjetGraphique.cpp gui/Rond.cpp gui/Rectangle.cpp gui/Ligne.cpp gui/Fleche.cpp
+	observer/AffichageDebugMouvement.cpp observer/AffichageSerialisationAJour.cpp
 )
 
 target_include_directories( base

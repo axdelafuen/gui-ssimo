@@ -4,6 +4,8 @@
 #include "ObjetGraphique.hpp"
 #include "Position.hpp"
 
+#include <string>
+
 namespace gui {
 
 class Ligne : public ObjetGraphique
@@ -13,8 +15,10 @@ class Ligne : public ObjetGraphique
 
 		void deplacer(const Position& nouvellePos) override;
 		void peindre() override;
+		std::string debug() const override;
+		std::string serialiser() const override;
 
-	private:
+	protected:
 		Position mHautGauche;
 		Position mBasDroite;
 };

@@ -6,6 +6,8 @@
 #include "gui/Rond.hpp"
 #include "gui/Rectangle.hpp"
 #include "gui/Fleche.hpp"
+#include "observer/AffichageDebugMouvement.h"
+#include "observer/AffichageSerialisationAJour.h"
 
 #include <iostream>
 #include <iterator>
@@ -69,6 +71,9 @@ int main(int argc, char* argv[])
 {
 	std::vector<std::unique_ptr<gui::ObjetGraphique>> objets;
 
+	observer::AffichageDebugMouvement observateurDebug;
+	observer::AffichageSerialisationAJour observateurSerialisation;
+
 	while (true)
 	{
 		int choix = 0;
@@ -86,7 +91,14 @@ int main(int argc, char* argv[])
 		{
 		case 0: break;
 		case 1: break;
-		case 2: objets.emplace_back(createRandomOG()); break;
+		case 2:
+		{
+			auto obj = createRandomOG();
+			obj->ajouterObservateur(&observateurDebug);
+			obj->ajouterObservateur(&observateurSerialisation);
+			objets.emplace_back(std::move(obj));
+			break;
+		}
 		case 3:
 		{
 			int idASuppr = 0;
@@ -119,12 +131,22 @@ int main(int argc, char* argv[])
 		}
 		case 6:
 		{
-			// Debug
+			int i = 0;
+			for (const auto& objetGraphique : objets)
+			{
+				std::cout << i << " => " << objetGraphique->debug() << std::endl;
+				++i;
+			}
 			break;
 		}
 		case 7:
 		{
-			// Serialisation
+			int i = 0;
+			for (const auto& objetGraphique : objets)
+			{
+				std::cout << i << " => " << objetGraphique->serialiser() << std::endl;
+				++i;
+			}
 			break;
 		}
 		}

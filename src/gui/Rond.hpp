@@ -5,6 +5,8 @@
 #include "ObjetGraphique.hpp"
 #include "Position.hpp"
 
+#include <string>
+
 namespace gui {
 
 class Rond : public ObjetGraphique
@@ -14,6 +16,8 @@ class Rond : public ObjetGraphique
 
 		void deplacer(const Position& nouvellePos) override;
 		void peindre() override;
+		std::string debug() const override;
+		std::string serialiser() const override;
 
 	private:
 		Position mCentre;

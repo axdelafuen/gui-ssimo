@@ -4,6 +4,8 @@
 #include "Ligne.hpp"
 #include "Position.hpp"
 
+#include <string>
+
 namespace gui {
 
 class Fleche : public Ligne
@@ -18,10 +20,11 @@ class Fleche : public Ligne
 		Fleche(Position hautGauche, Position basDroite, SensFleche sensFleche);
 
 		void peindre() override;
+		std::string debug() const override;
+		std::string serialiser() const override;
 
 	private:
-		// maybe_unused car ce devrait etre utilise dans peindre
-		[[maybe_unused]] SensFleche mSensFleche;
+		SensFleche mSensFleche;
 };
 
 }
